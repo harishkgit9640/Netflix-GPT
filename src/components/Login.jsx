@@ -1,9 +1,11 @@
 // import React from 'react'
 
+import Header from "./Header"
+
 const Login = () => {
     return (
         <div>
-            <header> Netflix GPT</header>
+            <Header />
             <form>
                 <h1>Sign In</h1>
                 <input type="email" placeholder="Email" />
