@@ -17,18 +17,34 @@ const Login = () => {
         setIsLoginForm(!isLoginForm)
     }
 
+    const handleSubmit = () => {
+        const [email, password, name] = [email.current.value, password.current.value, name.current.value]
+
+        if (!email || !password) {
+            setError("Please enter email and password")
+            return
+        }
+
+        if (isLoginForm) {
+            console.log("Login")
+        } else {
+            console.log("Sign Up")
+        }
+
+    }
+
     return (
         <div>
             <Header />
             <div className="absolute">
                 <img src={BG_URL} alt="bg-image" />
-            </div>
+            </div>*
             <form onSubmit={e => e.preventDefault()} className="w-3/12 bg-black absolute p-10 text-white rounded-lg bg-opacity-80">
                 <h1 className="text-3xl font-bold py-2"> {isLoginForm ? "Sign In" : "Sign Up"} </h1>
-                {!isLoginForm && <input type="text" value={name} placeholder="Full Name" className="p-2 my-4 w-full bg-gray-700" />}
-                <input type="email" value={email} placeholder="Email" className="p-2 my-4 w-full bg-gray-700" />
-                <input type="password" value={password} placeholder="Password" className="p-2 my-4 w-full bg-gray-700" />
-                <button className="px-4 py-2 my-2 w-full bg-red-600" >{isLoginForm ? "Sign In" : "Sign Up"}</button>
+                {!isLoginForm && <input type="text" ref={name} placeholder="Full Name" className="p-2 my-4 w-full bg-gray-700" />}
+                <input type="email" ref={email} placeholder="Email" className="p-2 my-4 w-full bg-gray-700" />
+                <input type="password" ref={password} placeholder="Password" className="p-2 my-4 w-full bg-gray-700" />
+                <button className="px-4 py-2 my-2 w-full bg-red-600" onClick={handleSubmit} >{isLoginForm ? "Sign In" : "Sign Up"}</button>
                 <span>{error}</span>
                 <div>
                     <span className="gray" >{isLoginForm ? "New to Netflix? " : "Already have an account? "}</span>
