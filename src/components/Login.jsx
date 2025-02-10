@@ -38,13 +38,13 @@ const Login = () => {
 			<div className="absolute">
 				<img src={BG_URL} alt="bg-image" />
 			</div>*
-			<form onSubmit={e => e.preventDefault()} className="w-3/12 bg-black absolute p-10 text-white rounded-lg bg-opacity-80">
+			<form onSubmit={e => e.preventDefault()} className="w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
 				<h1 className="text-3xl font-bold py-2"> {isLoginForm ? "Sign In" : "Sign Up"} </h1>
 				{!isLoginForm && <input type="text" ref={name} placeholder="Full Name" className="p-2 my-4 w-full bg-gray-700" />}
 				<input type="email" ref={email} placeholder="Email" className="p-2 my-4 w-full bg-gray-700" />
 				<input type="password" ref={password} placeholder="Password" className="p-2 my-4 w-full bg-gray-700" />
 				<button className="px-4 py-2 my-2 w-full bg-red-600" onClick={handleSubmit} >{isLoginForm ? "Sign In" : "Sign Up"}</button>
-				<span>{error}</span>
+				<span className="text-red-600">{error}</span>
 				<div>
 					<span className="gray" >{isLoginForm ? "New to Netflix? " : "Already have an account? "}</span>
 					<span className="link cursor-pointer" onClick={handleChange} >{isLoginForm ? "Sign Up" : "Sign In"}</span>
