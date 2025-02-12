@@ -6,8 +6,11 @@ import { checkValidData } from "../utils/validate"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from "../utils/firebaseAuth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
+
     const BG_URL = "https://assets.nflxext.com/ffe/siteui/vlv3/fb5cb900-0cb6-4728-beb5-579b9af98fdd/web/IN-en-20250127-TRIFECTA-perspective_cf66f5a3-d894-4185-9106-5f45502fc387_medium.jpg"
 
     const [isLoginForm, setIsLoginForm] = useState(false)
@@ -30,7 +33,9 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed up 
                     const user = userCredential.user;
-                    console.log("Sign Up" + user)
+                    console.log("Sign Up" + JSON.stringify(user))
+                    navigate("/browse")
+
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -43,7 +48,8 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    console.log("Login" + user)
+                    console.log("Login" + JSON.stringify(user))
+                    navigate("/browse")
 
                 })
                 .catch((error) => {
@@ -64,9 +70,9 @@ const Login = () => {
             </div>*
             <form onSubmit={e => e.preventDefault()} className="w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
                 <h1 className="text-3xl font-bold py-2"> {isLoginForm ? "Sign In" : "Sign Up"} </h1>
-                {!isLoginForm && <input type="text" ref={name} placeholder="Full Name" className="p-2 my-4 w-full bg-gray-700" />}
-                <input type="email" ref={email} placeholder="Email" className="p-2 my-4 w-full bg-gray-700" />
-                <input type="password" ref={password} placeholder="Password" className="p-2 my-4 w-full bg-gray-700" />
+                {!isLoginForm && <input type="text" ref={name} placeholder="Full Name" autoComplete="true" className="p-2 my-4 w-full bg-gray-700" />}
+                <input type="email" ref={email} placeholder="Email" autoComplete="true" className="p-2 my-4 w-full bg-gray-700" />
+                <input type="password" ref={password} placeholder="Password" autoComplete="true" className="p-2 my-4 w-full bg-gray-700" />
                 <button className="px-4 py-2 my-2 w-full bg-red-600" onClick={handleSubmit} >{isLoginForm ? "Sign In" : "Sign Up"}</button>
                 <span className="text-red-600">{error}</span>
                 <div>
