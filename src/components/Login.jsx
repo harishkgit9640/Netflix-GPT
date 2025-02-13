@@ -6,13 +6,11 @@ import { checkValidData } from "../utils/validate"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import { auth } from "../utils/firebaseAuth";
-import { useNavigate } from "react-router-dom";
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
 
 const Login = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const BG_URL = "https://assets.nflxext.com/ffe/siteui/vlv3/fb5cb900-0cb6-4728-beb5-579b9af98fdd/web/IN-en-20250127-TRIFECTA-perspective_cf66f5a3-d894-4185-9106-5f45502fc387_medium.jpg"
 
@@ -36,18 +34,12 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed up 
                     const user = userCredential.user;
-                    console.log("Sign Up" + JSON.stringify(user))
-
                     updateProfile(auth.currentUser, {
                         displayName: name.current.value, photoURL: "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
                     }).then(() => {
                         dispatch(addUser({ uid: user.uid, displayName: user.displayName, email: user.email, photoURL: user.photoURL }));
-                        console.log("User added successfully")
-                        navigate("/browse")
-
                     }).catch((error) => {
                         console.log("Error updating profile", error);
-
                     });
 
                 })
@@ -62,10 +54,7 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    dispatch(addUser({ uid: user.uid, displayName: user.displayName, email: user.email, photoURL: user.photoURL }));
-                    console.log("Login" + JSON.stringify(user))
-                    navigate("/browse")
-
+                    // dispatch(addUser({ uid: user.uid, displayName: user.displayName, email: user.email, photoURL: user.photoURL }));
                 })
                 .catch((error) => {
                     const errorCode = error.code;
