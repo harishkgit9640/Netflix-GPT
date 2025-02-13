@@ -8,11 +8,10 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from "../utils/firebaseAuth";
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
+import { BG_URL, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
     const dispatch = useDispatch();
-
-    const BG_URL = "https://assets.nflxext.com/ffe/siteui/vlv3/fb5cb900-0cb6-4728-beb5-579b9af98fdd/web/IN-en-20250127-TRIFECTA-perspective_cf66f5a3-d894-4185-9106-5f45502fc387_medium.jpg"
 
     const [isLoginForm, setIsLoginForm] = useState(true)
     const [error, setError] = useState("");
@@ -35,7 +34,7 @@ const Login = () => {
                     // Signed up 
                     const user = userCredential.user;
                     updateProfile(auth.currentUser, {
-                        displayName: name.current.value, photoURL: "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
+                        displayName: name.current.value, photoURL: USER_AVATAR
                     }).then(() => {
                         dispatch(addUser({ uid: user.uid, displayName: user.displayName, email: user.email, photoURL: user.photoURL }));
                     }).catch((error) => {
