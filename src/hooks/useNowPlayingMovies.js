@@ -5,6 +5,7 @@ import { API_OPTIONS } from "../utils/constants";
 
 const useNowPlayingMovies = () => {
     const dispatch = useDispatch();
+
     const url = 'https://api.themoviedb.org/3/movie/now_playing?page=1';
 
     const getMovies = async () => {
