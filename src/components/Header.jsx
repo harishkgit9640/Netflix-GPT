@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useEffect } from "react";
 import { LANGUAGE, LOGO_URL } from "../utils/constants";
-import { setGptMode, setLanguage } from "../utils/settingSlice";
+import { setGptMode, setLanguage, toggleDarkMode } from "../utils/settingSlice";
 
 const Header = () => {
     const user = useSelector(state => state.user)
+    const setting = useSelector(state => state.setting)
+    console.log(setting);
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -46,6 +49,9 @@ const Header = () => {
     const handleGptBtn = () => {
         dispatch(setGptMode())
     }
+    const handleChangeMode = () => {
+        dispatch(toggleDarkMode())
+    }
     const handleChangeLanguage = (e) => {
         dispatch(setLanguage(e.target.value))
     }
@@ -59,7 +65,8 @@ const Header = () => {
                         <option key={lan.identity} value={lan.identity}>{lan.name}</option>
                     )}
                 </select>
-                <button onClick={handleGptBtn} className="text-white font-bold px-4 py-2 mr-3 bg-indigo-700 rounded-md">GPT MODE</button>
+                <button onClick={handleChangeMode} className="text-white font-bold px-4 py-2 mr-3 bg-slate-700 rounded-md">{setting.isDarkMode ? "Dark Mode" : "Light Mode"} </button>
+                <button onClick={handleGptBtn} className="text-white font-bold px-4 py-2 mr-3 bg-indigo-700 rounded-md"> {setting.isGptMode ? "Normal Mode" : "GPT Mode"} </button>
                 <img src={user?.photoURL} alt="user-profile" className="w-10 h-10 rounded-full mr-3" />
                 <button onClick={handleSignOut} className="text-white font-bold px-4 py-2 bg-red-500 rounded-md">Sign Out</button>
             </div>)}

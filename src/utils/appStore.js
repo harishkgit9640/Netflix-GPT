@@ -8,7 +8,7 @@ const appStore = configureStore({
     reducer: {
         user: userReducer,
         movie: movieReducer,
-        settings: settingReducer
+        setting: settingReducer
     }
 })
 
