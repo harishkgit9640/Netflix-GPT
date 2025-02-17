@@ -29,3 +29,12 @@ export const API_URLS = [
     "https://api.themoviedb.org/3/movie/top_rated?page=1",
     "https://api.themoviedb.org/3/movie/upcoming?page=1"
 ]
+
+export const LANGUAGE = [
+    { "identity": "en", "name": "English" },
+    { "identity": "hi", "name": "Hindi" },
+    { "identity": "bn", "name": "Bengali" },
+    { "identity": "mr", "name": "Marathi" },
+    { "identity": "ta", "name": "Tamil" },
+    { "identity": "te", "name": "Telugu" },
+]

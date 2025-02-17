@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useEffect } from "react";
-import { LOGO_URL } from "../utils/constants";
+import { LANGUAGE, LOGO_URL } from "../utils/constants";
+import { setGptMode, setLanguage } from "../utils/settingSlice";
 
 const Header = () => {
     const user = useSelector(state => state.user)
@@ -42,10 +43,23 @@ const Header = () => {
         return () => unsubscribe;
     }, [])
 
+    const handleGptBtn = () => {
+        dispatch(setGptMode())
+    }
+    const handleChangeLanguage = (e) => {
+        dispatch(setLanguage(e.target.value))
+    }
+
     return (
         <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between align-center ">
             <img className="w-40" src={LOGO_URL} alt="logo" />
             {user && (<div className="logout-btn flex justify-end items-center">
+                <select name="language" id="language" className="px-4 py-2 mr-3 rounded-md" onChange={handleChangeLanguage}>
+                    {LANGUAGE.map((lan) =>
+                        <option key={lan.identity} value={lan.identity}>{lan.name}</option>
+                    )}
+                </select>
+                <button onClick={handleGptBtn} className="text-white font-bold px-4 py-2 mr-3 bg-indigo-700 rounded-md">GPT MODE</button>
                 <img src={user?.photoURL} alt="user-profile" className="w-10 h-10 rounded-full mr-3" />
                 <button onClick={handleSignOut} className="text-white font-bold px-4 py-2 bg-red-500 rounded-md">Sign Out</button>
             </div>)}
