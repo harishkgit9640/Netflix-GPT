@@ -32,7 +32,8 @@ export const API_URLS = [
 
 export const LANGUAGE = [
     { "identity": "en", "name": "English" },
-    { "identity": "hi", "name": "Hindi" },
+    { "identity": "hi", "name": "हिन्दी" },
+    { "identity": "span", "name": "Spanish" },
     { "identity": "bn", "name": "Bengali" },
     { "identity": "mr", "name": "Marathi" },
     { "identity": "ta", "name": "Tamil" },

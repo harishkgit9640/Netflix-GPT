@@ -1,10 +1,14 @@
+import { useSelector } from "react-redux";
 import useFetchApi from "../hooks/useFetchApi";
 import { API_URLS } from "../utils/constants";
 import Header from "./Header"
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
+import GptSearchPage from "./GptSearchPage";
 
 const Browse = () => {
+    const isGptMode = useSelector(state => state.setting.isGptMode)
+
     useFetchApi("Now Playing Movies", API_URLS[0]);
     useFetchApi("Popular Movies", API_URLS[1]);
     useFetchApi("Top Rated Movies", API_URLS[2]);
@@ -12,8 +16,13 @@ const Browse = () => {
     return (
         <>
             <Header />
-            <MainContainer />
-            <SecondaryContainer />
+            {isGptMode ? <GptSearchPage /> :
+                <>
+                    <MainContainer />
+                    <SecondaryContainer />
+
+                </>
+            }
         </>
     )
 }
