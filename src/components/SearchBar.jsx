@@ -1,16 +1,29 @@
 import React, { useRef } from 'react'
 import { useSelector } from 'react-redux';
 import lang from '../utils/languages';
+import useGemini from '../utils/useGemini';
+import { API_OPTIONS } from '../utils/constants';
 
 const SearchBar = () => {
     const userInput = useRef(null);
     const language = useSelector(state => state.setting.language)
     // console.log(language);
 
-    const handleChangeSearch = () => {
+    const searchMovieTMDB = async (movie_name) => {
+        const url = 'https://api.themoviedb.org/3/search/movie?query=' + movie_name + '&include_adult=false&page=1';
+        const response = await fetch(url, API_OPTIONS);
+        const data = await response.json();
+        console.log(data.results);
+    }
+
+    const handleChangeSearch = async () => {
         const search = userInput.current.value
         if (!search) { alert(`Please search something!`); return; };
-        console.log(search);
+        // const result = await useGemini(search);
+        // const searchArray = result.split(",")
+        // console.log(searchArray);
+        const searchArray = ['Gol Maal', ' Chupke Chupke', ' Hera Pheri', '  Angoor', '  Padosan']
+        searchMovieTMDB(searchArray[0]);
     }
 
     return (

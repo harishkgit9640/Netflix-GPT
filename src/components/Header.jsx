@@ -63,7 +63,7 @@ const Header = () => {
                 <button onClick={handleGptBtn} className="text-white font-bold px-4 py-2 mr-3 bg-indigo-700 rounded-md"> {setting.isGptMode ? "Normal Mode" : "GPT Mode"} </button>
                 <select name="language" id="language" className="px-4 py-2 mr-3 rounded-md" onChange={handleChangeLanguage}>
                     {LANGUAGE.map((lan) =>
-                        <option key={lan.identity} selected={setting.language === lan.identity ? "selected" : ""} value={lan.identity}>{lan.name}</option>
+                        <option key={lan.identity} defaultValue={setting.language === lan.identity ? "selected" : ""} value={lan.identity}>{lan.name}</option>
                     )}
                 </select>
                 <img src={user?.photoURL} alt="user-profile" className="w-10 h-10 rounded-full mr-3" />
