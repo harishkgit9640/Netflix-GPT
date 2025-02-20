@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchBar from './SearchBar'
 import { BG_URL } from '../utils/constants'
+import SearchResult from './SearchResult'
 
 const GptSearchPage = () => {
     return (
@@ -10,6 +11,7 @@ const GptSearchPage = () => {
             </div>
             <div className='pt-52'>
                 <SearchBar />
+                <SearchResult />
             </div>
         </>
     )

@@ -1,11 +1,13 @@
 import React, { useRef } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import lang from '../utils/languages';
 import useGemini from '../utils/useGemini';
 import { API_OPTIONS } from '../utils/constants';
+import { addSearchResult } from '../utils/movieSlice';
 
 const SearchBar = () => {
     const userInput = useRef(null);
+    const dispatch = useDispatch();
     const language = useSelector(state => state.setting.language)
     // console.log(language);
 
@@ -13,17 +15,22 @@ const SearchBar = () => {
         const url = 'https://api.themoviedb.org/3/search/movie?query=' + movie_name + '&include_adult=false&page=1';
         const response = await fetch(url, API_OPTIONS);
         const data = await response.json();
-        console.log(data.results);
+        // console.log(data.results);
+        return data.results
     }
 
     const handleChangeSearch = async () => {
         const search = userInput.current.value
         if (!search) { alert(`Please search something!`); return; };
-        // const result = await useGemini(search);
-        // const searchArray = result.split(",")
+        const result = await useGemini(search);
+        const moviesName = result.split(",")
         // console.log(searchArray);
-        const searchArray = ['Gol Maal', ' Chupke Chupke', ' Hera Pheri', '  Angoor', '  Padosan']
-        searchMovieTMDB(searchArray[0]);
+        // const searchArray = ['Gol Maal', ' Chupke Chupke', ' Hera Pheri', '  Angoor', '  Padosan']
+        const resultsArray = moviesName.map((movie_name) => searchMovieTMDB(movie_name));
+        const allMovies = await Promise.all(resultsArray);
+        console.log(allMovies);
+
+        dispatch(addSearchResult({ movies_name: moviesName, movies_array: allMovies }));
     }
 
     return (
