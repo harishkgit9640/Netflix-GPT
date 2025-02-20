@@ -22,14 +22,12 @@ const SearchBar = () => {
     const handleChangeSearch = async () => {
         const search = userInput.current.value
         if (!search) { alert(`Please search something!`); return; };
-        const result = await useGemini(search);
+        const searchQuery = "Act as movie recommendations system and suggest some movies for the query: " + search + "only give me name of 5 movies, comma separated.";
+        const result = await useGemini(searchQuery);
         const moviesName = result.split(",")
-        // console.log(searchArray);
-        // const searchArray = ['Gol Maal', ' Chupke Chupke', ' Hera Pheri', '  Angoor', '  Padosan']
+        console.log(moviesName);
         const resultsArray = moviesName.map((movie_name) => searchMovieTMDB(movie_name));
         const allMovies = await Promise.all(resultsArray);
-        console.log(allMovies);
-
         dispatch(addSearchResult({ movies_name: moviesName, movies_array: allMovies }));
     }
 

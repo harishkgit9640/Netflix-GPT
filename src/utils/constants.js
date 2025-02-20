@@ -9,15 +9,11 @@ export const BG_URL = "https://assets.nflxext.com/ffe/siteui/vlv3/fb5cb900-0cb6-
 
 // TMDB API CREDENTIALS
 
-export const API_ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNjI0NzE5M2JkYjVmMjYzZTliNDE2MzQxOTQzNWM3NSIsIm5iZiI6MTczOTQxNjY1MC42MTUsInN1YiI6IjY3YWQ2NDRhNjQ1NjY5MTM3ZTlmNDk1MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ysx7vVMJyYDFBymcFik2GM-_rt6Ea8mu4JCLTAjAhF0"
-export const API_KEY = "f6247193bdb5f263e9b4163419435c75"
-
-
 export const API_OPTIONS = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNjI0NzE5M2JkYjVmMjYzZTliNDE2MzQxOTQzNWM3NSIsIm5iZiI6MTczOTQxNjY1MC42MTUsInN1YiI6IjY3YWQ2NDRhNjQ1NjY5MTM3ZTlmNDk1MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ysx7vVMJyYDFBymcFik2GM-_rt6Ea8mu4JCLTAjAhF0'
+        Authorization: 'Bearer ' + import.meta.env.VITE_TMDB_API_KEY,
     }
 };
 
