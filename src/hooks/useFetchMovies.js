@@ -14,7 +14,6 @@ const useFetchMovies = (movieId) => {
         const response = await data?.json();
         const filteredVideo = response.results?.filter((video) => video.type === "Trailer");
         const trailer = filteredVideo.length ? filteredVideo[0] : response.results?.[0];
-        // console.log(trailer);
         dispatch(addTrailerVideo(trailer));
     }
 

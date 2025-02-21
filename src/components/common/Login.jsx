@@ -69,14 +69,14 @@ const Login = () => {
         <div>
             <Header />
             <div className="absolute">
-                <img className="w-full h-full object-cover" src={BG_URL} alt="bg-image" />
-            </div>*
-            <form onSubmit={e => e.preventDefault()} className="w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
-                <h1 className="text-3xl font-bold py-2"> {isLoginForm ? "Sign In" : "Sign Up"} </h1>
+                <img className="w-screen h-screen object-cover md:object-fill" src={BG_URL} alt="bg-image" />
+            </div>
+            <form onSubmit={e => e.preventDefault()} className="w-full md:w-3/12 absolute p-8 md:p-12 bg-black my-56 md:my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
+                <h1 className="text-3xl font-bold py-2 text-center"> {isLoginForm ? "Sign In" : "Sign Up"} </h1>
                 {!isLoginForm && <input type="text" ref={name} placeholder="Full Name" autoComplete="true" className="p-2 my-4 w-full bg-gray-700" />}
                 <input type="email" ref={email} placeholder="Email" autoComplete="true" className="p-2 my-4 w-full bg-gray-700" />
                 <input type="password" ref={password} placeholder="Password" autoComplete="true" className="p-2 my-4 w-full bg-gray-700" />
-                <button className="px-4 py-2 my-2 w-full bg-red-600" onClick={handleSubmit} >{isLoginForm ? "Sign In" : "Sign Up"}</button>
+                <button className="px-4 py-2 my-2 w-full bg-red-600 hover:bg-red-700" onClick={handleSubmit} >{isLoginForm ? "Sign In" : "Sign Up"}</button>
                 <span className="text-red-600">{error}</span>
                 <div>
                     <span className="gray" >{isLoginForm ? "New to Netflix? " : "Already have an account? "}</span>

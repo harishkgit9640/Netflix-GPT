@@ -21,7 +21,6 @@ const Browse = () => {
     const storeAllMovies = async () => {
         const moviesArray = API_URLS.map((movie) => fetchMovies(movie.url));
         const allMoviesResult = await Promise.all(moviesArray);
-        console.log(allMoviesResult);
         API_URLS.map((movie, index) => dispatch(addAllMovies({ category: movie.title, movies_list: allMoviesResult[index] })))
     }
 

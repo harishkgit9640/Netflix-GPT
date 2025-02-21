@@ -54,24 +54,25 @@ const Header = () => {
     }
 
     return (
-        <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between align-center ">
+        <div className="absolute w-screen px-3 md:px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between align-center ">
             <img className="w-40" src={LOGO_URL} alt="logo" />
-            {user && (<div className="logout-btn flex justify-end items-center">
-                <select name="language" id="language" className="px-4 py-2 mr-3 rounded-md" onChange={handleChangeLanguage}>
-                    {LANGUAGE.map((lan) =>
-                        <option key={lan.identity} defaultValue={setting.language === lan.identity ? "selected" : ""} value={lan.identity}>{lan.name}</option>
-                    )}
-                </select>
-                <img src={user?.photoURL} alt="user-profile" className="relative w-10 h-10 rounded-full cursor-pointer" onClick={() => setShow(!show)} title={user?.displayName} referrerPolicy="no-referrer" />
-                <ul className={`absolute top-16 right-8 bg-red-600 px-4 py-2 rounded-md ${show ? "" : "hidden"}`}>
-                    <li className="text-white font-bold mb-2">{user?.displayName.toUpperCase()}</li>
-                    <li className="text-white font-bold mb-2" onClick={handleChangeMode} > {setting.isDarkMode ? "Dark Mode" : "Light Mode"}  </li>
-                    <li className="text-white font-bold mb-2" onClick={handleGptBtn} > {setting.isGptMode ? "Normal Mode" : "GPT Mode"} </li>
-                    <li className="text-white font-bold mb-2" onClick={handleSignOut} > Sign Out </li>
-                </ul>
-            </div>)
+            {user && (
+                <div className="logout-btn flex justify-end items-center">
+                    <select name="language" id="language" className="px-4 py-2 mr-3 rounded-md hidden md:block" onChange={handleChangeLanguage}>
+                        {LANGUAGE.map((lan) =>
+                            <option key={lan.identity} defaultValue={setting.language === lan.identity ? "selected" : ""} value={lan.identity}>{lan.name}</option>
+                        )}
+                    </select>
+                    <img src={user?.photoURL} alt="user-profile" className="relative w-10 h-10 rounded-full cursor-pointer" onClick={() => setShow(!show)} title={user?.displayName} referrerPolicy="no-referrer" />
+                    <ul className={`absolute top-16 md:top-20 right-5 md:right-8 w-[140px] md:w-[170px] text-right bg-slate-100 p-2 rounded-md ${show ? "" : "hidden"}`}>
+                        <li className="text-black font-bold mb-1 cursor-pointer hover:bg-slate-300 py-2 px-4 rounded-sm">{user?.displayName.toUpperCase()}</li>
+                        <li className="text-black font-bold mb-1 cursor-pointer hover:bg-slate-300 py-2 px-4 rounded-sm" onClick={handleChangeMode} > {setting.isDarkMode ? "Dark Mode" : "Light Mode"}  </li>
+                        <li className="text-black font-bold mb-1 cursor-pointer hover:bg-slate-300 py-2 px-4 rounded-sm" onClick={handleGptBtn} > {setting.isGptMode ? "Normal Mode" : "GPT Mode"} </li>
+                        <li className="text-black font-bold mb-1 cursor-pointer hover:bg-slate-300 py-2 px-4 rounded-sm" onClick={handleSignOut} > Sign Out </li>
+                    </ul>
+                </div>)
             }
-        </div >
+        </div>
     )
 }
 

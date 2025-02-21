@@ -7,7 +7,7 @@ const SecondaryContainer = () => {
     const moviesCategory = useSelector((store) => store?.movie?.allMovies)
     return (
         <div className='bg-black'>
-            <div className='relative -mt-52 z-10'>
+            <div className='relative mt-0 md:-mt-52 z-10'>
                 {moviesCategory?.map((movie) => (
                     <MovieList key={movie.category} title={movie?.category} movies_list={movie?.movies_list} />
                 ))}
