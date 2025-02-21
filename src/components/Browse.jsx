@@ -1,21 +1,36 @@
-import { useSelector } from "react-redux";
-import useFetchApi from "../hooks/useFetchApi";
-import { API_URLS } from "../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { API_OPTIONS, API_URLS } from "../utils/constants";
 import Header from "./Header"
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
 import GptSearchPage from "./GptSearchPage";
+import { addAllMovies } from "../utils/movieSlice";
+import { useEffect } from "react";
 
 const Browse = () => {
+    const dispatch = useDispatch();
     const isGptMode = useSelector(state => state.setting.isGptMode)
     const allMovies = useSelector((store) => store?.movie?.allMovies);
 
-    if (!allMovies || allMovies.length === 0) {
-        useFetchApi("Now Playing Movies", API_URLS[0]);
-        useFetchApi("Popular Movies", API_URLS[1]);
-        useFetchApi("Top Rated Movies", API_URLS[2]);
-        useFetchApi("Upcoming Movies", API_URLS[3]);
+    const fetchMovies = async (url) => {
+        const res = await fetch(url, API_OPTIONS);
+        const data = await res.json();
+        return data.results
     }
+
+    const storeAllMovies = async () => {
+        const moviesArray = API_URLS.map((movie) => fetchMovies(movie.url));
+        const allMoviesResult = await Promise.all(moviesArray);
+        console.log(allMoviesResult);
+        API_URLS.map((movie, index) => dispatch(addAllMovies({ category: movie.title, movies_list: allMoviesResult[index] })))
+    }
+
+    useEffect(() => {
+        if (!allMovies || allMovies.length === 0) {
+            storeAllMovies();
+        }
+    }, [])
+
 
     return (
         <>
