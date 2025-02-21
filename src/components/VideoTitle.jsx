@@ -1,6 +1,4 @@
 import React from 'react'
-// import BackgroundVideo from './BackgroundVideo'
-
 const VideoTitle = ({ title, overview }) => {
     return (
         <>

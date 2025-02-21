@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import lang from '../utils/languages';
-import useGemini from '../utils/useGemini';
+import useGemini from '../hooks/useGemini';
 import { API_OPTIONS } from '../utils/constants';
-import { addSearchResult } from '../utils/movieSlice';
+import { addSearchResult } from '../store/movieSlice';
 
 const SearchBar = () => {
     const userInput = useRef(null);

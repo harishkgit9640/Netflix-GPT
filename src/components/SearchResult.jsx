@@ -1,5 +1,5 @@
 import React from 'react'
-import MovieList from '../components/MovieList';
+import MovieList from './common/MovieList';
 import { useSelector } from 'react-redux';
 const SearchResult = () => {
     const { movies_name, movies_array } = useSelector((store) => store?.movie)

@@ -2,13 +2,13 @@
 import { useState } from "react"
 import Header from "./Header"
 import { useRef } from "react"
-import { checkValidData } from "../utils/validate"
+import { checkValidData } from "../../utils/validate"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 
-import { auth } from "../utils/firebaseAuth";
-import { addUser } from "../utils/userSlice";
+import { auth } from "../../utils/firebaseAuth";
+import { addUser } from "../../store/userSlice";
 import { useDispatch } from "react-redux";
-import { BG_URL, USER_AVATAR } from "../utils/constants";
+import { BG_URL, USER_AVATAR } from "../../utils/constants";
 
 const Login = () => {
     const dispatch = useDispatch();
