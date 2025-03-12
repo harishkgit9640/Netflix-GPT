@@ -15,7 +15,6 @@ const Header = () => {
     const navigate = useNavigate()
 
     const handleSignOut = () => {
-
         signOut(auth).then(() => {
             // Sign-out successful.
             console.log("Sign Out Successful");
@@ -65,7 +64,7 @@ const Header = () => {
                     </select>
                     <img src={user?.photoURL} alt="user-profile" className="relative w-10 h-10 rounded-full cursor-pointer" onClick={() => setShow(!show)} title={user?.displayName} referrerPolicy="no-referrer" />
                     <ul className={`absolute top-16 md:top-20 right-5 md:right-8 w-[140px] md:w-[170px] text-right bg-slate-100 p-2 rounded-md ${show ? "" : "hidden"}`}>
-                        <li className="text-black font-bold mb-1 cursor-pointer hover:bg-slate-300 py-2 px-4 rounded-sm">{user?.displayName.toUpperCase()}</li>
+                        <li className="text-black font-bold mb-1 cursor-pointer hover:bg-slate-300 py-2 px-4 rounded-sm">{user?.displayName}</li>
                         <li className="text-black font-bold mb-1 cursor-pointer hover:bg-slate-300 py-2 px-4 rounded-sm" onClick={handleChangeMode} > {setting.isDarkMode ? "Dark Mode" : "Light Mode"}  </li>
                         <li className="text-black font-bold mb-1 cursor-pointer hover:bg-slate-300 py-2 px-4 rounded-sm" onClick={handleGptBtn} > {setting.isGptMode ? "Normal Mode" : "GPT Mode"} </li>
                         <li className="text-black font-bold mb-1 cursor-pointer hover:bg-slate-300 py-2 px-4 rounded-sm" onClick={handleSignOut} > Sign Out </li>
