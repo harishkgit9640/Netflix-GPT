@@ -15,8 +15,6 @@
 - Created Redux Store with userSlice
 - Implemented Sign out
 - Update Profile
-- BugFix: Sign up user displayName and profile picture update
-- BugFix: if the user is not logged in Redirect /browse to Login Page and vice-versa
 - Unsubscibed to the onAuthStateChanged callback
 - Add hardcoded values to the constants file
 - Regiter TMDB API & create an app & get access token
@@ -37,7 +35,7 @@
 - usePopularMovies Custom hook
 - GPT Search Page
 - GPT Search Bar
-- (BONUS) Multi-language Feature in our App)
+- (BONUS) Multi-language Feature in our App
 - Get Open AI Api Key
 - Gpt Search API Call
 - fetched gptMoviesSuggestions from TMDB
